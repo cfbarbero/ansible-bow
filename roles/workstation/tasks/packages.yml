@@ -1,0 +1,121 @@
+# install packages
+- name: install packages
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - '@kde-desktop-environment'
+    - GitPython
+    - NetworkManager-openvpn
+    - VirtualBox-4.3
+    - ansible
+    - bitlbee
+    - bpython
+    - colordiff
+    - ctags
+    - ctags-etags
+    - dos2unix
+    - emacs
+    - emacs-el
+    - euca2ools
+    - fedora-packager
+    - fedpkg
+    - fuse
+    - git
+    - git-review
+    - gnupg
+    - gnupg2
+    - gnuplot
+    - gnuplot-doc
+    - golang
+    - graphviz
+    - gstreamer
+    - gstreamer-plugins-bad-free
+    - gstreamer-plugins-base
+    - gstreamer-plugins-good
+    - gstreamer-plugins-ugly
+    - gstreamer1
+    - gstreamer1-plugins-bad-free
+    - gstreamer1-plugins-base
+    - gstreamer1-plugins-good
+    - gstreamer1-plugins-ugly
+    - hamster-time-tracker
+    - inkscape
+    - ipset
+    - kernel-devel
+    - konversation
+    - kpartx
+    - libreoffice-calc
+    - libreoffice-impress
+    - libreoffice-math
+    - libreoffice-writer
+    - libxml2-devel
+    - liveusb-creator
+    - lm_sensors
+    - lsof
+    - man-pages
+    - mariadb-devel
+    - mercurial
+    - mock
+    - mod_ssl
+    - mod_wsgi
+    - mrtg
+    - nmap
+    - nmap-ncat
+    - ntp
+    - ntpdate
+    - okular
+    - pyflakes
+    - pylint
+    - python-docker-py
+    - python-pep8
+    - python-pip
+    - python-setuptools
+    - python-virtualenv
+    - python-virtualenvwrapper
+    - recordmydesktop
+    - rhythmbox
+    - rpm-build
+    - rpm-python
+    - rpmdevtools
+    - rsync
+    - screen
+    - strace
+    - subversion
+    - sysstat
+    - telnet
+    - terminator
+    - texlive
+    - thunderbird
+    - tito
+    - vlc
+    - wget
+    - wireshark
+    - zsh
+- name: install Fedora packages
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - docker-io
+    - fedora-review
+    - fedora-review-tests
+    - hamster-time-tracker
+    - xmlstarlet
+  when: ansible_os_family == "Fedora"
+- name: install CentOS packages
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - docker
+  when: ansible_os_family == "RedHat"
+
+- name: check for Vagrant RPM
+  shell: rpm -q vagrant
+  register: vagrant_installed_check
+  ignore_errors: true
+  changed_when: "vagrant_installed_check.rc != 0"
+- name: install Vagrant
+  shell: 'rpm -hvU https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.rpm'
+  when: vagrant_installed_check.rc != 0
+- name: check for iptables services
+  stat: path=/usr/lib/systemd/system/iptables.service follow=true
+  register: iptables_services_exist
+- name: install iptables services
+  yum: pkg=iptables-services state=installed
+  when: iptables_services_exist.stat.exists == False

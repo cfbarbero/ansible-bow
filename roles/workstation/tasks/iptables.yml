@@ -1,0 +1,9 @@
+---
+# configure iptables
+- name: install iptables rules
+  copy: src=iptables dest=/etc/sysconfig/iptables
+  notify:
+    - restart iptables
+
+- name: start and enable iptables
+  service: name=iptables state=started enabled=yes

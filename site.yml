@@ -1,0 +1,8 @@
+---
+# This Playbook will setup my workstation from scratch
+
+- hosts: all
+  user: root
+  accelerate: true
+  roles:
+   - role: workstation

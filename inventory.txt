@@ -1,0 +1,6 @@
+[workstation]
+localhost    ansible_connection=local
+
+[workstation:vars]
+user=cris
+uid=1001

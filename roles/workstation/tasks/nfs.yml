@@ -1,0 +1,5 @@
+---
+- name: configure NFS server
+  copy: src=nfs dest=/etc/sysconfig/nfs
+  notify:
+    - restart nfs

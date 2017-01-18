@@ -1,0 +1,7 @@
+---
+# configure some local commands that aren't in dotfiles
+- file: >
+    dest=/home/{{ user }}/bin/json_tool.py
+    src=/usr/lib64/python2.7/site-packages/simplejson/tool.py
+    owner={{ user }} group={{ user }}
+    state=link

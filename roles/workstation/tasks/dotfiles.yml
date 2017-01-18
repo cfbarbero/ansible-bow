@@ -1,0 +1,6 @@
+---
+# clone dotfiles repo into $HOME
+- name: clone dotfiles repo into $HOME
+  shell: >
+    export DOTFILES_HOME=/home/{{ user }} && curl https://raw.githubusercontent.com/stpierre/dotfiles/master/bin/setup-home.sh | bash -ex
+    creates=/home/{{ user }}/.git
