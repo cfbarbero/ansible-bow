@@ -1,15 +1,4 @@
 ---
 
-- name: yum clean all
-  shell: yum -y clean all
-
-- name: restart iptables
-  service: name=iptables state=restarted
-
-- name: restart nfs
-  service: name={{ item }} state=restarted
-  with_items:
-    - nfslock
-    - nfs-mountd
-    - nfs-rquotad
-    - nfs-server
+- name: apt update
+  shell: apt-get -yq update
