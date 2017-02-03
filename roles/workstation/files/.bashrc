@@ -10,3 +10,6 @@ eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 export DOCKER_HOST=tcp://0.0.0.0:2375
+
+eval `ssh-agent`
+ssh-add ~/.ssh/deltaforce.pem

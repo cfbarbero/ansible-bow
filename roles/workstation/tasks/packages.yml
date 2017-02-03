@@ -1,9 +1,12 @@
 # install packages
 - name: install packages
-  yum: pkg={{ item }} state=installed
+  apt: name={{ item }} state=installed
+  become: yes
   with_items:
     - ansible
     - git
     - git-review
     - graphviz
     - lsof
+    - pylint
+    - vagrant

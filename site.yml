@@ -3,6 +3,5 @@
 
 - hosts: all
   user: cris
-  accelerate: true
   roles:
    - role: workstation
