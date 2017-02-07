@@ -13,3 +13,4 @@ export DOCKER_HOST=tcp://0.0.0.0:2375
 
 eval `ssh-agent`
 ssh-add ~/.ssh/deltaforce.pem
+ssh-add ~/.ssh/krish.pem

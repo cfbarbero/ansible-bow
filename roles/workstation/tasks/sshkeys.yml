@@ -1,0 +1,12 @@
+---
+- name: Add deltaforce key
+  copy: 
+    src: /mnt/c/Users/cris.barbero/.ssh/deltaforce.pem 
+    dest: /home/{{ user }}/.ssh/deltaforce.pem
+    mode: 0600
+
+- name: Add krish key
+  copy:
+    src: /mnt/c/Users/cris.barbero/.ssh/krish.pem 
+    dest: /home/{{ user }}/.ssh/krish.pem
+    mode: 0600
