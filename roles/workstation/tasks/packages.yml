@@ -1,7 +1,6 @@
 # install packages
 - name: install packages
   apt: name={{ item }} state=installed
-  become: yes
   with_items:
     - ansible
     - git
@@ -10,3 +9,5 @@
     - lsof
     - pylint
     - vagrant
+    - python-pip
+    - maven
